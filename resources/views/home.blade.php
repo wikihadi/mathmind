@@ -20,7 +20,7 @@
 </head>
 <body>
 <v-app id=app>
-<layout :app-title={{ config('app.name') }}></layout>
+<layout :user="{{Auth::user()}}"></layout>
 </v-app>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

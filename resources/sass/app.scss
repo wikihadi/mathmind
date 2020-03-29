@@ -4,9 +4,14 @@
 // Variables
 @import 'variables';
 
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 @import '~vuetify/dist/vuetify.min.css';
 @import '~@mdi/font/css/materialdesignicons.min.css';
+@import "~vazir-font/dist/font-face.css";
 
+    body,*{
+        font-family: 'Vazir', sans-serif;
+    }

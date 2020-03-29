@@ -13,7 +13,7 @@
             <v-icon>mdi-exit-to-app</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Open Temporary Drawer</v-list-item-title>
+            <v-list-item-title>باز کردن</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -26,7 +26,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Toolbar</v-toolbar-title>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer />
       <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight" />
     </v-app-bar>
@@ -63,6 +63,7 @@
           align="center"
         >
           <v-col class="shrink">
+              <h1 @click="randomNumber(10)">{{a}}</h1>
             <!-- <v-tooltip right>
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -108,7 +109,7 @@
       color="blue-grey"
       class="white--text"
     >
-      <span>MATHMIND</span>
+      <span>{{title}}</span>
       <v-spacer />
       <span>&copy; 2020</span>
     </v-footer>
@@ -119,12 +120,58 @@
   export default {
     props: {
       source: String,
+        n:'',
+        a:[]
     },
     data: () => ({
       drawer: null,
       drawerRight: null,
       right: false,
       left: false,
+        title:document.title,
     }),
+      methods: {
+          changeRTL () {
+              this.$vuetify.rtl = true
+          },
+          randomNumber(d){
+              let x;
+
+              for (let i=0;i<d;i++){
+                  x = Math.floor(Math.random() * 10);
+                  this.a = this.a.push('as');
+              }
+              
+          },
+          getRandomArbitrary(max) {
+              let l = String(max).length;
+              let min = 0;
+              min = Math.ceil(min);
+              max = Math.floor(max);
+              let i = Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+              let n;
+              if (String(i).length<l){
+                  let zero = '0';
+                  let x = l - String(i).length;
+                  n = i.toString();
+                  for (i=0;i<x;i++){
+                      n = zero.concat(n);
+                  }
+                  i=n;
+
+              }else {
+                  n = i.toString();
+              }
+              return n;
+          },
+          re(){
+              this.n = this.getRandomArbitrary(999999999999999);
+          }
+      },
+      mounted() {
+        this.changeRTL();
+        this.randomNumber(10);
+        // this.re();
+      }
   }
 </script>

@@ -2025,17 +2025,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    source: String
+    source: String,
+    n: '',
+    a: []
   },
   data: function data() {
     return {
       drawer: null,
       drawerRight: null,
       right: false,
-      left: false
+      left: false,
+      title: document.title
     };
+  },
+  methods: {
+    changeRTL: function changeRTL() {
+      this.$vuetify.rtl = true;
+    },
+    randomNumber: function randomNumber(d) {
+      var x;
+
+      for (var i = 0; i < d; i++) {
+        x = Math.floor(Math.random() * 10);
+        this.a = this.a.push('as');
+      }
+    },
+    getRandomArbitrary: function getRandomArbitrary(max) {
+      var l = String(max).length;
+      var min = 0;
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      var i = Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+
+      var n;
+
+      if (String(i).length < l) {
+        var zero = '0';
+        var x = l - String(i).length;
+        n = i.toString();
+
+        for (i = 0; i < x; i++) {
+          n = zero.concat(n);
+        }
+
+        i = n;
+      } else {
+        n = i.toString();
+      }
+
+      return n;
+    },
+    re: function re() {
+      this.n = this.getRandomArbitrary(999999999999999);
+    }
+  },
+  mounted: function mounted() {
+    this.changeRTL();
+    this.randomNumber(10); // this.re();
   }
 });
 
@@ -37451,9 +37500,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [
-                      _c("v-list-item-title", [_vm._v("Open Temporary Drawer")])
-                    ],
+                    [_c("v-list-item-title", [_vm._v("باز کردن")])],
                     1
                   )
                 ],
@@ -37481,7 +37528,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("Toolbar")]),
+          _c("v-toolbar-title", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -37569,7 +37616,21 @@ var render = function() {
               _c(
                 "v-row",
                 { attrs: { justify: "center", align: "center" } },
-                [_c("v-col", { staticClass: "shrink" })],
+                [
+                  _c("v-col", { staticClass: "shrink" }, [
+                    _c(
+                      "h1",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.randomNumber(10)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.a))]
+                    )
+                  ])
+                ],
                 1
               )
             ],
@@ -37594,7 +37655,7 @@ var render = function() {
         "v-footer",
         { staticClass: "white--text", attrs: { app: "", color: "blue-grey" } },
         [
-          _c("span", [_vm._v("MATHMIND")]),
+          _c("span", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -91294,6 +91355,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
 /**
  * The following block of code may be used to automatically register your
